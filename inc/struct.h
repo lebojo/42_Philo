@@ -6,7 +6,7 @@
 /*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 03:19:22 by jchapell          #+#    #+#             */
-/*   Updated: 2023/05/31 05:22:23 by jchapell         ###   ########.fr       */
+/*   Updated: 2023/06/01 19:59:08 by jchapell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "proto.h"
 
-typedef	struct s_time
+typedef struct s_time
 {
 	int		eat;
 	int		die;
@@ -23,18 +23,20 @@ typedef	struct s_time
 	int		end;
 }	t_time;
 
-typedef	struct s_philo
+typedef struct s_philo
 {
 	char		state; //E == Eate, T == penser
-	int			has_fork;
 	int			id;
 	pthread_t	tr;
 	t_time		*time;
+	int			*forks;
 }	t_philo;
 
-typedef	struct s_data
+typedef struct s_data
 {
 	int		nb_philo;
+	int		*forks;
+	t_time	time;
 	t_philo	*philo;
 }	t_data;
 
