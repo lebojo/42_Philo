@@ -6,7 +6,7 @@
 /*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 01:24:12 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/02 00:49:18 by jchapell         ###   ########.fr       */
+/*   Updated: 2023/06/02 04:35:11 by jchapell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,4 @@ void	philo_state(int time, int philo, char type)
 		tmp = add_str(tmp, " died", 1);
 	info(tmp);
 	free(tmp);
-	usleep(800);
 }

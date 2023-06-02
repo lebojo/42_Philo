@@ -6,7 +6,7 @@
 /*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 01:14:25 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/02 01:56:46 by jchapell         ###   ########.fr       */
+/*   Updated: 2023/06/02 05:23:29 by jchapell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <semaphore.h>
 # include "struct.h"
 
+/*MAIN				*/
+void	*routine(void *philo);
+
 /*CONSOLE			*/
 int		error(char *str);
 int		info(char *str);
@@ -30,10 +33,8 @@ void	philo_state(int time, int philo, char type);
 /*UTILS				*/
 char	*add_str(char *s1, char *s2, int f);
 int		zz_strlen(char *s);
-int		time_diff(struct timeval *start, struct timeval *end);
-int		get_now(t_time *time);
-void	take_forks(char *state, int	*f, int id, int max);
-void	clean_exit(t_philo *p);
+int		get_now(void);
+void	clean_exit(t_data *d);
 
 /*MINI_LIBFT		*/
 char	*zz_itoa(int n);
@@ -47,5 +48,6 @@ void	init_data(t_data *d, t_time *t, int argc, char **args);
 /*STATE				*/
 void	can_eat(t_philo *p);
 void	dying(t_philo *p);
+void	create_philo(t_data *data, t_philo *p, t_philo *n_p, int i);
 
 #endif
