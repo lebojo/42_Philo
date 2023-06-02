@@ -6,7 +6,7 @@
 /*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 01:14:25 by jchapell          #+#    #+#             */
-/*   Updated: 2023/05/31 04:42:56 by jchapell         ###   ########.fr       */
+/*   Updated: 2023/06/02 01:56:46 by jchapell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ void	philo_state(int time, int philo, char type);
 /*UTILS				*/
 char	*add_str(char *s1, char *s2, int f);
 int		zz_strlen(char *s);
+int		time_diff(struct timeval *start, struct timeval *end);
+int		get_now(t_time *time);
+void	take_forks(char *state, int	*f, int id, int max);
+void	clean_exit(t_philo *p);
 
 /*MINI_LIBFT		*/
 char	*zz_itoa(int n);
@@ -39,5 +43,9 @@ void	*ft_calloc(size_t count, size_t size);
 
 /*INIT				*/
 void	init_data(t_data *d, t_time *t, int argc, char **args);
+
+/*STATE				*/
+void	can_eat(t_philo *p);
+void	dying(t_philo *p);
 
 #endif

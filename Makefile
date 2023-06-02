@@ -3,7 +3,7 @@ NAME = philo
 SRC_DIR = ./
 SRC = \
 	main.c console.c utils.c inc/mini_libft/ft_calloc.c inc/mini_libft/ft_itoa.c \
-	inc/mini_libft/ft_strdup.c init.c
+	inc/mini_libft/ft_strdup.c init.c state.c
 SOURCES = $(addprefix $(SRC_DIR), $(SRC))
 
 OBJS = $(SOURCES:.c=.o)

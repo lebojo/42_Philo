@@ -6,7 +6,7 @@
 /*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 01:24:12 by jchapell          #+#    #+#             */
-/*   Updated: 2023/05/31 02:30:54 by jchapell         ###   ########.fr       */
+/*   Updated: 2023/06/02 00:49:18 by jchapell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	philo_state(int time, int philo, char type)
 	char	*tmp;
 
 	tmp = add_str(zz_itoa(time), " ", 1);
-	tmp = add_str(tmp, zz_itoa(philo), 3);
+	tmp = add_str(tmp, zz_itoa(philo + 1), 3);
 	if (type == 'F')
 		tmp = add_str(tmp, " has taken a fork", 1);
 	else if (type == 'E')
@@ -42,4 +42,5 @@ void	philo_state(int time, int philo, char type)
 		tmp = add_str(tmp, " died", 1);
 	info(tmp);
 	free(tmp);
+	usleep(800);
 }

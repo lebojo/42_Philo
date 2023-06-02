@@ -6,7 +6,7 @@
 /*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 01:36:11 by jchapell          #+#    #+#             */
-/*   Updated: 2023/05/31 02:00:41 by jchapell         ###   ########.fr       */
+/*   Updated: 2023/06/02 01:56:53 by jchapell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,37 @@ char	*add_str(char *s1, char *s2, int f)
 		free(s2);
 	}
 	return (res);
+}
+
+int	time_diff(struct timeval *start, struct timeval *end)
+{
+	gettimeofday(end, NULL);
+	return ((end->tv_usec - start->tv_usec) / 1000);
+}
+
+int	get_now(t_time *time)
+{
+	return (time_diff(&time->start, &time->now));
+}
+
+void	take_forks(char *state, int	*f, int id, int max)
+{
+	if (id < max && f[id] && f[id + 1])
+	{
+		f[id] = 0;
+		f[id + 1] = 0;
+		*state = 'E';
+	}
+	else if (id == max && f[id] && f[0])
+	{
+		f[id] = 0;
+		f[id + 1] = 0;
+		*state = 'E';
+	}
+}
+
+void	clean_exit(t_philo *p)
+{
+	pthread_mutex_destroy(p->lock);
+	exit(info("Successfull exit!"));
 }
