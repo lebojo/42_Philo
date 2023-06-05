@@ -1,55 +1,57 @@
-NAME = philo
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jordan <jordan@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/06/01 01:10:08 by jordan            #+#    #+#              #
+#    Updated: 2023/06/04 22:58:35 by jordan           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-SRC_DIR = ./
-SRC = \
-	main.c console.c utils.c inc/mini_libft/ft_calloc.c inc/mini_libft/ft_itoa.c \
-	inc/mini_libft/ft_strdup.c init.c state.c
-SOURCES = $(addprefix $(SRC_DIR), $(SRC))
+# Executable Name
+ENAME	=	philo
+NAME	=	philo.a
+CFLAGS	=	-Wall -Werror -Wextra
+AR		=	ar -rsc
+FILES	=	main.c console.c utils.c init.c state.c\
+			inc/mini_libft/ft_strdup.c inc/mini_libft/ft_calloc.c inc/mini_libft/ft_itoa.c
 
-OBJS = $(SOURCES:.c=.o)
+# Path for .c , .h and .o Files 
+SRC_PATH := ./
+OBJ_PATH := ./OBJ/
 
-CC = gcc
+all : $(NAME)
 
-CFLAGS = -g -pthread
+# Files to compile
+OBJ1 := $(FILES:.c=.o)
+OBJ := $(patsubst %,$(OBJ_PATH)%,$(OBJ1))
 
-G			= \033[0;90m #gray
-R			= \033[0;91m #red
-GR			= \033[0;92m #green
-Y			= \033[0;93m #yellow
-B			= \033[0;94m #blue
-M			= \033[0;95m #magenta
-C			= \033[0;96m #cyan
-W			= \033[0;97m #white
-ENDCOLOR	= \033[0m #reset
-BG_G		= \033[42m #bg_g
+# Build .o first
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	@echo [CC] $<
+	@mkdir -p $(dir $@)
+	@$(CC) $(CFLAGS) -o $@ -c $<     
 
-all: $(NAME) print
+# Build final Binary
+$(NAME): $(OBJ)
+	@echo [INFO] Creating $(Shell uname) Binary Executable [$(NAME)]
+	$(AR) $(NAME) $(OBJ) $(LINKFLAGS)
+	$(CC) $(CFLAGS) $(NAME) -o $(ENAME)
 
-print:
-	@echo "${GR}"
-	@echo "${GR}.------.${C}.------.${B}.------.${M}.------.${Y}.------.${R}"
-	@echo "${GR}|P.--. |${C}|H.--. |${B}|I.--. |${M}|L.--. |${Y}|O.--. |${R}"
-	@echo "${GR}| :/\: |${C}| :/\: |${B}| (\/) |${M}| :/\: |${Y}| :/\: |${R}"
-	@echo "${GR}| (__) |${C}| (__) |${B}| :\/: |${M}| (__) |${Y}| :\/: |${R}"
-	@echo "${GR}| '--'P|${C}| '--'H|${B}| '--'I|${M}| '--'L|${Y}| '--'O|${R}"
-	@echo "${GR}\______/${C}\______/${B}\______/${M}\______/${Y}\______/${R}"
-	@echo " "
-	@echo " "
-	@echo "${ENDCOLOR}"
-
-$(NAME): $(OBJS)
-	@echo "${GR}"
-	@${CC} ${CFLAGS} ${OBJS} -o ${NAME}
-
-%.o: %.c
-	@echo "${C}"
-	$(CC) -c $(CFLAGS) -c $< -o $@
-
-clean:
-	@rm -f $(OBJS)
+# Clean all the object files and the binary
+clean:   
+	@echo "[Cleaning]"
+	@$(RM) -rfv $(OBJ_PATH)*
 
 fclean: clean
-	@rm -f $(NAME)
-	@echo fclean: OK
+		@$(RM) -rfv $(NAME)
+		@$(RM) -rfv $(ENAME)
 
 re: fclean all
+
+san: all
+	$(CC) $(CFLAGS) $(NAME) -fsanitize=address -o $(ENAME)
+
+.PHONY : clean fclean re

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 03:19:22 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/02 04:38:54 by jchapell         ###   ########.fr       */
+/*   Updated: 2023/06/05 01:12:18 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,32 @@ typedef struct s_time
 	int				die;
 	int				sleep;
 	int				end;
-	struct timeval	timer;
+	long int		start;
 }	t_time;
 
 typedef struct s_philo
 {
 	char			state;
 	int				id;
-	int				last_eat;
+	int				od;
+	long int		last_eat;
+	long int		philo_start;
 	int				*max;
 	pthread_mutex_t	fork;
 	pthread_mutex_t	*next_fork;
+	pthread_mutex_t	*die;
 	pthread_t		tr;
+	pthread_t		gm;
 	t_time			*time;
 }	t_philo;
 
 typedef struct s_data
 {
 	int				nb_philo;
+	int				one_die;
 	t_time			time;
 	t_philo			*philo;
+	pthread_mutex_t	died;
 }	t_data;
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 01:36:11 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/02 05:23:11 by jchapell         ###   ########.fr       */
+/*   Updated: 2023/06/05 00:22:52 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,18 @@ char	*add_str(char *s1, char *s2, int f)
 	return (res);
 }
 
-int	get_now(void)
+long int	get_now(void)
 {
-	struct timeval	tv;
+	struct timeval	now;
 
-	if (gettimeofday(&tv, NULL))
+	if (gettimeofday(&now, NULL))
 		return (error("gettimeofday() FAILURE"));
-	return (tv.tv_usec / 1000);
+	return ((now.tv_sec * 1000) + (now.tv_usec / 1000));
+}
+
+long int	get_now_rel(t_philo *p)
+{
+	return (get_now() - p->philo_start);
 }
 
 void	clean_exit(t_data *d)
@@ -64,7 +69,7 @@ void	clean_exit(t_data *d)
 	i = 0;
 	while (i < d->nb_philo)
 	{
-		pthread_mutex_destroy(&d->philo[i].fork);
+		pthread_mutex_destroy(&d->philo[i++].fork);
 	}
 	exit(info("Successfull exit!"));
 }

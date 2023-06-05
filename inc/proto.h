@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 01:14:25 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/02 05:23:29 by jchapell         ###   ########.fr       */
+/*   Updated: 2023/06/05 01:32:54 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,32 @@
 # include "struct.h"
 
 /*MAIN				*/
-void	*routine(void *philo);
+void		*routine(void *philo);
+void		*dying(void *philo);
 
 /*CONSOLE			*/
-int		error(char *str);
-int		info(char *str);
-void	philo_state(int time, int philo, char type);
+int			error(char *str);
+int			info(char *str);
+void		philo_state(long int time, int philo, char type, int od);
 
 /*UTILS				*/
-char	*add_str(char *s1, char *s2, int f);
-int		zz_strlen(char *s);
-int		get_now(void);
-void	clean_exit(t_data *d);
+char		*add_str(char *s1, char *s2, int f);
+int			zz_strlen(char *s);
+long int	get_now(void);
+long int	get_now_rel(t_philo *p);
+void		clean_exit(t_data *d);
 
 /*MINI_LIBFT		*/
-char	*zz_itoa(int n);
-int		zz_atoi(char *str);
-char	*ft_strdup(char *s1);
-void	*ft_calloc(size_t count, size_t size);
+char		*zz_itoa(int n);
+int			zz_atoi(char *str);
+char		*ft_strdup(char *s1);
+void		*ft_calloc(size_t count, size_t size);
 
 /*INIT				*/
-void	init_data(t_data *d, t_time *t, int argc, char **args);
+void		init_data(t_data *d, t_time *t, int argc, char **args);
 
 /*STATE				*/
-void	can_eat(t_philo *p);
-void	dying(t_philo *p);
-void	create_philo(t_data *data, t_philo *p, t_philo *n_p, int i);
+void		eat(t_philo *p);
+void		create_philo(t_data *data, t_philo *p, t_philo *n_p, int i);
 
 #endif
