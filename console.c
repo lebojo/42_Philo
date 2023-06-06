@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   console.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 05:08:51 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/06 07:36:52 by jchapell         ###   ########.fr       */
+/*   Updated: 2023/06/06 12:07:53 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ int	info(char *str)
 	return (1);
 }
 
-void	p_state(unsigned long int time, int philo, enum e_s s)
+void	p_state(unsigned long int time, t_philo *p)
 {
-	philo++;
-	// printf("\e[0;32m[PHILO] \033[0m");
-	// if (s == Thinking)
-	// 	printf("%lums %i is thinking\n", time, philo);
-	// if (s == Eating)
-	// 	printf("%lums %i is Eating\n", time, philo);
-	// if (s == Fork)
-	// 	printf("%lums %i take a fork\n", time, philo);
-	// if (s == Sleeping)
-	// 	printf("%lums %i is sleeping\n", time, philo);
-	// if (s == Dead)
-	// 	printf("%lums %i died\n", time, philo);
+	p->id++;
+	printf("\e[0;32m[PHILO] \033[0m");
+	if (p->state == Thinking)
+		printf("%lums %i is thinking\n", time, p->id);
+	if (p->state == Eating)
+		printf("%lums %i is Eating\n", time, p->id);
+	if (p->state == Fork)
+		printf("%lums %i take a fork\n", time, p->id);
+	if (p->state == Sleeping)
+		printf("%lums %i is sleeping\n", time, p->id);
+	if (p->state == Dead)
+		printf("%lums %i died\n", time, p->id);
 }

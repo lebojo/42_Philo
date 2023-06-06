@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:29:32 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/06 07:25:53 by jchapell         ###   ########.fr       */
+/*   Updated: 2023/06/06 12:05:17 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,11 @@ typedef struct s_philo
 	int					nb_philo;
 	t_time				*t;
 	pthread_mutex_t		*fork;
-	pthread_mutex_t		*die;
+	pthread_mutex_t		*next_fork;
+	pthread_mutex_t		*l;
 	enum e_s			state;
-	enum e_s			*n_state;
 	pthread_t			tr;
+	pthread_t			life;
 	unsigned long int	start;
 	unsigned long int	*gs;
 }	t_philo;
@@ -52,7 +53,7 @@ typedef struct s_data
 	t_time				time;
 	t_philo				*p;
 	pthread_mutex_t		*forks;
-	pthread_mutex_t		die;
+	pthread_mutex_t		lock;
 	int					nb_philo;
 	unsigned long int	start;
 }	t_data;
