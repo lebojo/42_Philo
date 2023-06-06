@@ -6,7 +6,7 @@
 /*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 03:19:22 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/05 01:12:18 by jordan           ###   ########.fr       */
+/*   Updated: 2023/06/06 01:52:46 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,10 @@ typedef struct s_philo
 {
 	char			state;
 	int				id;
-	int				od;
 	long int		last_eat;
 	long int		philo_start;
-	int				*max;
-	pthread_mutex_t	fork;
-	pthread_mutex_t	*next_fork;
+	int				max;
+	pthread_mutex_t	*fork;
 	pthread_mutex_t	*die;
 	pthread_t		tr;
 	pthread_t		gm;
@@ -43,9 +41,9 @@ typedef struct s_philo
 typedef struct s_data
 {
 	int				nb_philo;
-	int				one_die;
 	t_time			time;
 	t_philo			*philo;
+	pthread_mutex_t	*forks;
 	pthread_mutex_t	died;
 }	t_data;
 

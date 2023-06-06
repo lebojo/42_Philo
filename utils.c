@@ -6,7 +6,7 @@
 /*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 01:36:11 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/05 00:22:52 by jordan           ###   ########.fr       */
+/*   Updated: 2023/06/06 01:12:59 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void	clean_exit(t_data *d)
 {
 	int	i;
 
-	i = 0;
-	while (i < d->nb_philo)
+	i = -1;
+	while (++i < d->nb_philo)
 	{
-		pthread_mutex_destroy(&d->philo[i++].fork);
+		pthread_mutex_destroy(&d->philo[i].fork[i]);
 	}
 	exit(info("Successfull exit!"));
 }

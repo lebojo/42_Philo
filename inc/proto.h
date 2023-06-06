@@ -6,7 +6,7 @@
 /*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 01:14:25 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/05 01:32:54 by jordan           ###   ########.fr       */
+/*   Updated: 2023/06/06 01:08:14 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void		*dying(void *philo);
 /*CONSOLE			*/
 int			error(char *str);
 int			info(char *str);
-void		philo_state(long int time, int philo, char type, int od);
+void		philo_state(long int time, int philo, char type);
 
 /*UTILS				*/
 char		*add_str(char *s1, char *s2, int f);
@@ -49,6 +49,6 @@ void		init_data(t_data *d, t_time *t, int argc, char **args);
 
 /*STATE				*/
 void		eat(t_philo *p);
-void		create_philo(t_data *data, t_philo *p, t_philo *n_p, int i);
+void		create_philo(t_data *data, int i);
 
 #endif

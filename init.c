@@ -6,7 +6,7 @@
 /*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 03:40:19 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/05 01:13:45 by jordan           ###   ########.fr       */
+/*   Updated: 2023/06/06 00:53:42 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	init_data(t_data *d, t_time *t, int argc, char **args)
 	t->die = zz_atoi(args[2]);
 	t->sleep = zz_atoi(args[4]);
 	t->start = get_now();
-	d->one_die = 0;
 	pthread_mutex_init(&d->died, NULL);
 	if (argc > 5)
 		t->end = zz_atoi(args[5]);
