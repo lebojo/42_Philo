@@ -3,20 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jordan <jordan@student.42.fr>              +#+  +:+       +#+         #
+#    By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 01:10:08 by jordan            #+#    #+#              #
-#    Updated: 2023/06/04 22:58:35 by jordan           ###   ########.fr        #
+#    Updated: 2023/06/06 07:37:30 by jchapell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Executable Name
 ENAME	=	philo
 NAME	=	philo.a
-CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	
 AR		=	ar -rsc
-FILES	=	main.c console.c utils.c init.c state.c\
-			inc/mini_libft/ft_strdup.c inc/mini_libft/ft_calloc.c inc/mini_libft/ft_itoa.c
+FILES	=	inc/mini_libft/ft_strdup.c inc/mini_libft/ft_itoa.c \
+			main.c utils.c console.c
 
 # Path for .c , .h and .o Files 
 SRC_PATH := ./

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   console.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 01:24:12 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/06 00:40:08 by jordan           ###   ########.fr       */
+/*   Created: 2023/06/06 05:08:51 by jchapell          #+#    #+#             */
+/*   Updated: 2023/06/06 07:36:52 by jchapell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,18 @@ int	info(char *str)
 	return (1);
 }
 
-void	philo_state(long int time, int philo, char type)
+void	p_state(unsigned long int time, int philo, enum e_s s)
 {
-	char	*tmp;
-
-	tmp = add_str(zz_itoa(time), " ", 1);
-	tmp = add_str(tmp, zz_itoa(philo), 3);
-	if (type == 'F')
-		tmp = add_str(tmp, " has taken a fork", 1);
-	else if (type == 'E')
-		tmp = add_str(tmp, " is eating", 1);
-	else if (type == 'S')
-		tmp = add_str(tmp, " is sleeping", 1);
-	else if (type == 'T')
-		tmp = add_str(tmp, " is thinking", 1);
-	else if (type == 'D')
-		tmp = add_str(tmp, " died", 1);
-	info(tmp);
-	free(tmp);
+	philo++;
+	// printf("\e[0;32m[PHILO] \033[0m");
+	// if (s == Thinking)
+	// 	printf("%lums %i is thinking\n", time, philo);
+	// if (s == Eating)
+	// 	printf("%lums %i is Eating\n", time, philo);
+	// if (s == Fork)
+	// 	printf("%lums %i take a fork\n", time, philo);
+	// if (s == Sleeping)
+	// 	printf("%lums %i is sleeping\n", time, philo);
+	// if (s == Dead)
+	// 	printf("%lums %i died\n", time, philo);
 }
