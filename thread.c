@@ -6,7 +6,7 @@
 /*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 06:39:26 by jordan            #+#    #+#             */
-/*   Updated: 2023/06/07 07:14:00 by jordan           ###   ########.fr       */
+/*   Updated: 2023/06/07 14:27:23 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,28 @@ void	*life(void *philo)
 		{
 			p->state = Dead;
 			p_state(get_now() - *p->gs, p);
-			exit(0);
+			pthread_mutex_lock(p->l);
+			*p->nb_meals = -42;
 		}
 		if (p->nb_eat == p->t->must_eat)
 		{
+			pthread_mutex_lock(p->l);
 			*p->nb_meals += 1;
 			p->nb_eat += 1;
+			pthread_mutex_unlock(p->l);
 		}
 	}
+}
+
+void	clean_exit(t_data *d)
+{
+	int	i;
+
+	i = -1;
+	while (++i < d->nb_philo)
+		pthread_mutex_destroy(&d->forks[i]);
+	pthread_mutex_destroy(&d->lock);
+	free(d->forks);
+	free(d->p);
+	exit(0);
 }

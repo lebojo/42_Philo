@@ -6,7 +6,7 @@
 /*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:29:07 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/07 07:00:02 by jordan           ###   ########.fr       */
+/*   Updated: 2023/06/07 14:05:45 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int					error(char *str);
 /*THREAD			*/
 void				*routine(void *philo);
 void				*life(void *philo);
+void				clean_exit(t_data *d);
 
 /*MINI_LIBFT		*/
 char				*zz_itoa(int n);

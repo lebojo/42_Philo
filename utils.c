@@ -6,14 +6,39 @@
 /*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:34:42 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/07 05:30:15 by jordan           ###   ########.fr       */
+/*   Updated: 2023/06/07 14:52:18 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/proto.h"
 
+char	**copy_av(char **av, int ac)
+{
+	int		i;
+	char	**tmp;
+	int		tmp2;
+
+	i = -1;
+	tmp = malloc(sizeof(char *) * (ac - 1));
+	while (++i < ac - 1)
+	{
+		tmp2 = zz_atoi(av[i + 1]);
+		tmp[i] = zz_itoa(tmp2);
+	}
+	return (tmp);
+}
+
+void	free_tab(char **t, int i)
+{
+	while (i >= 0)
+		free(t[i--]);
+	free(t);
+}
+
 int	parse(t_data *d, int ac, char **av)
 {
+	char	**tmp;
+
 	d->nb_philo = zz_atoi(av[1]);
 	if (d->nb_philo < 1)
 		return (error("Not enough philosophers"));
@@ -23,18 +48,16 @@ int	parse(t_data *d, int ac, char **av)
 	if (ac == 6)
 	{
 		d->time.must_eat = zz_atoi(av[5]);
-		if (zz_strcmp(zz_itoa(d->time.must_eat), av[5]))
-			return (error("not a number"));
 		if (d->time.must_eat < 1)
 			return (error("Not enough meals"));
 	}
 	else
 		d->time.must_eat = -1;
-	if (zz_strcmp(zz_itoa(d->nb_philo), av[1])
-		|| zz_strcmp(zz_itoa(d->time.die), av[2])
-		|| zz_strcmp(zz_itoa(d->time.eat), av[3])
-		|| zz_strcmp(zz_itoa(d->time.sleep), av[4]))
+	tmp = copy_av(av, ac);
+	if (zz_strcmp(tmp[0], av[1]) || zz_strcmp(tmp[1], av[2])
+		|| zz_strcmp(tmp[2], av[3]) || zz_strcmp(tmp[3], av[4]))
 		return (error("not a number"));
+	free_tab(tmp, ac - 2);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:30:10 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/07 07:32:19 by jordan           ###   ########.fr       */
+/*   Updated: 2023/06/07 14:10:41 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,10 @@ int	main(int ac, char **av)
 			pthread_mutex_lock(&data.lock);
 			printf("\e[0;32m[PHILO] \033[0m%ims All philos ate enough\n",
 				get_now() - data.start);
-			exit(0);
+			clean_exit(&data);
 		}
+		if (data.nb_meals == -42)
+			clean_exit(&data);
 	}
 	return (0);
 }
