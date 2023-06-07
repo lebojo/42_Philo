@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 20:43:11 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/06 04:32:29 by jchapell         ###   ########.fr       */
+/*   Updated: 2023/06/07 05:20:52 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,16 @@ void	*ft_calloc(size_t count, size_t size)
 		return (ptr);
 	memset(ptr, '\0', size * count);
 	return (ptr);
+}
+
+int	zz_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	if (*s1 || *s2)
+		return (1);
+	return (0);
 }

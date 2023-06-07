@@ -6,7 +6,7 @@
 /*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:29:32 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/06 23:46:39 by jordan           ###   ########.fr       */
+/*   Updated: 2023/06/07 05:44:34 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ enum e_s
 	Sleeping,
 	Thinking,
 	Dead,
-	Fork,
-	Fork2
+	Fork
 };
 
 typedef struct s_time
@@ -38,6 +37,8 @@ typedef struct s_philo
 	int					id;
 	unsigned long int	last_eat;
 	int					nb_philo;
+	int					nb_eat;
+	int					*nb_meals;
 	t_time				*t;
 	pthread_mutex_t		*fork;
 	pthread_mutex_t		*next_fork;
@@ -56,6 +57,7 @@ typedef struct s_data
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		lock;
 	int					nb_philo;
+	int					nb_meals;
 	unsigned long int	start;
 }	t_data;
 

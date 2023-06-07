@@ -6,7 +6,7 @@
 /*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:29:07 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/06 12:02:06 by jordan           ###   ########.fr       */
+/*   Updated: 2023/06/07 05:19:11 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "struct.h"
 
 /*UTILS				*/
-void				parse(t_data *d, int ac, char **av);
-unsigned long int	get_now();
+int					parse(t_data *d, int ac, char **av);
+unsigned long int	get_now(void);
 
 /*CONSOLE			*/
 void				p_state(unsigned long int time, t_philo *p);
@@ -37,5 +37,6 @@ int					zz_atoi(char *str);
 int					zz_strlen(char *str);
 char				*ft_strdup(char *s1);
 void				*ft_calloc(size_t count, size_t size);
+int					zz_strcmp(const char *s1, const char *s2);
 
 #endif
