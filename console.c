@@ -6,7 +6,7 @@
 /*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 05:08:51 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/06 12:07:53 by jordan           ###   ########.fr       */
+/*   Updated: 2023/06/07 04:21:35 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,21 @@ int	info(char *str)
 
 void	p_state(unsigned long int time, t_philo *p)
 {
-	p->id++;
-	printf("\e[0;32m[PHILO] \033[0m");
+	int		id;
+	char	*str;
+
+	id = p->id + 1;
+	str = "\e[0;32m[PHILO] \033[0m";
 	if (p->state == Thinking)
-		printf("%lums %i is thinking\n", time, p->id);
+		printf("%s%lums %i is thinking\n",str, time, id);
 	if (p->state == Eating)
-		printf("%lums %i is Eating\n", time, p->id);
+		printf("%s%lums %i is Eating\n",str, time, id);
 	if (p->state == Fork)
-		printf("%lums %i take a fork\n", time, p->id);
+		printf("%s%lums %i take a fork\n",str, time, id);
+	if (p->state == Fork2)
+		printf("%s%lums %i take the next fork\n",str, time, id);
 	if (p->state == Sleeping)
-		printf("%lums %i is sleeping\n", time, p->id);
+		printf("%s%lums %i is sleeping\n",str, time, id);
 	if (p->state == Dead)
-		printf("%lums %i died\n", time, p->id);
+		printf("%s%lums %i died\n",str, time, id);
 }

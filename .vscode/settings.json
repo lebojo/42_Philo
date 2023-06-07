@@ -1,0 +1,12 @@
+{
+	"files.associations": {
+		"proto.h": "c"
+	},
+	"makefile.launchConfigurations": [
+		{
+			"cwd": "/home/jordan/42_Philo",
+			"binaryPath": "/home/jordan/42_Philo/philo",
+			"binaryArgs": []
+		}
+	]
+}

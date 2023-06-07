@@ -6,7 +6,7 @@
 /*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:29:32 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/06 12:05:17 by jordan           ###   ########.fr       */
+/*   Updated: 2023/06/06 23:46:39 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ enum e_s
 	Sleeping,
 	Thinking,
 	Dead,
-	Fork
+	Fork,
+	Fork2
 };
 
 typedef struct s_time

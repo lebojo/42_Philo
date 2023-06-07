@@ -6,7 +6,7 @@
 /*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:30:10 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/06 12:09:52 by jordan           ###   ########.fr       */
+/*   Updated: 2023/06/06 23:48:15 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	*routine(void *philo)
 			pthread_mutex_lock(p->fork);
 			p_state(get_now() - *p->gs, p);
 			pthread_mutex_lock(p->next_fork);
+			p->state = Fork2;
 			p_state(get_now() - *p->gs, p);
 			p->state = Eating;
 			p->last_eat = get_now();
