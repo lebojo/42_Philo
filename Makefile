@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+         #
+#    By: jordan <jordan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 01:10:08 by jordan            #+#    #+#              #
-#    Updated: 2023/06/06 07:37:30 by jchapell         ###   ########.fr        #
+#    Updated: 2023/06/07 06:42:08 by jordan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME	=	philo.a
 CFLAGS	=	
 AR		=	ar -rsc
 FILES	=	inc/mini_libft/ft_strdup.c inc/mini_libft/ft_itoa.c \
-			main.c utils.c console.c
+			main.c utils.c console.c thread.c
 
 # Path for .c , .h and .o Files 
 SRC_PATH := ./

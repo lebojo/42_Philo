@@ -6,7 +6,7 @@
 /*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:29:07 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/07 05:19:11 by jordan           ###   ########.fr       */
+/*   Updated: 2023/06/07 07:00:02 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ unsigned long int	get_now(void);
 void				p_state(unsigned long int time, t_philo *p);
 int					info(char *str);
 int					error(char *str);
+
+/*THREAD			*/
+void				*routine(void *philo);
+void				*life(void *philo);
 
 /*MINI_LIBFT		*/
 char				*zz_itoa(int n);
