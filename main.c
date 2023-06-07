@@ -6,7 +6,7 @@
 /*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:30:10 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/07 05:47:55 by jordan           ###   ########.fr       */
+/*   Updated: 2023/06/07 06:12:31 by jordan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	*routine(void *philo)
 	p = (t_philo *)philo;
 	while (1)
 	{
+		p_state(get_now() - *p->gs, p);
 		if (p->state == Thinking)
 		{
 			p->state = Fork;
@@ -30,7 +31,7 @@ void	*routine(void *philo)
 			p->last_eat = get_now();
 			p_state(get_now() - *p->gs, p);
 			usleep(p->t->eat * 1000);
-			p->nb_eat++;
+			p->nb_eat += 1;
 			pthread_mutex_unlock(p->fork);
 			pthread_mutex_unlock(p->next_fork);
 		}
@@ -42,7 +43,6 @@ void	*routine(void *philo)
 		}
 		if (p->state == Sleeping)
 			p->state = Thinking;
-		p_state(get_now() - *p->gs, p);
 	}
 }
 
@@ -55,13 +55,15 @@ void	*life(void *philo)
 	{
 		if (get_now() - p->last_eat >= p->t->die)
 		{
-			pthread_mutex_lock(p->l);
 			p->state = Dead;
 			p_state(get_now() - *p->gs, p);
 			exit(0);
 		}
 		if (p->t->must_eat != -1 && p->nb_eat == *p->nb_meals)
+		{
 			*p->nb_meals += 1;
+			p->nb_eat += 1;
+		}
 	}
 }
 
