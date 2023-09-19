@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jordan <jordan@student.42.fr>              +#+  +:+       +#+         #
+#    By: lebojo <lebojo@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 01:10:08 by jordan            #+#    #+#              #
-#    Updated: 2023/06/07 06:42:08 by jordan           ###   ########.fr        #
+#    Updated: 2023/09/19 16:53:26 by lebojo           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,6 @@ fclean: clean
 re: fclean all
 
 san: all
-	$(CC) $(CFLAGS) $(NAME) -fsanitize=address -o $(ENAME)
+	$(CC) $(CFLAGS) $(NAME) -fsanitize=thread -o $(ENAME)
 
 .PHONY : clean fclean re

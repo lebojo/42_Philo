@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lebojo <lebojo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:34:42 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/07 14:52:18 by jordan           ###   ########.fr       */
+/*   Updated: 2023/09/19 18:40:06 by lebojo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,12 @@ int	parse(t_data *d, int ac, char **av)
 unsigned long int	get_now(void)
 {
 	struct timeval	now;
+	static long		start;
 
-	if (gettimeofday(&now, NULL))
-		return (error("gettimeofday() FAILURE"));
-	return ((now.tv_sec * 1000) + (now.tv_usec / 1000));
+	gettimeofday(&now, 0);
+	if (start == 0)
+	{
+		start = now.tv_sec * 1000 + now.tv_usec / 1000;
+	}
+	return ((now.tv_sec * 1000 + now.tv_usec / 1000) - start);
 }

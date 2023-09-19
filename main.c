@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lebojo <lebojo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:30:10 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/07 14:10:41 by jordan           ###   ########.fr       */
+/*   Updated: 2023/09/19 18:47:17 by lebojo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,17 @@ void	create_philo(t_data *d, int i)
 	d->p[i].fork = &d->forks[i];
 	d->p[i].next_fork = &d->forks[(i + 1) % d->nb_philo];
 	d->p[i].state = Thinking;
-	d->p[i].start = get_now();
-	d->p[i].last_eat = d->p[i].start;
-	d->p[i].gs = &d->start;
+	d->p[i].last_eat = 0;
 	d->p[i].l = &d->lock;
 	d->p[i].nb_eat = 0;
 	d->p[i].nb_meals = &d->nb_meals;
 	pthread_create(&d->p[i].tr, NULL, &routine, &d->p[i]);
 	pthread_create(&d->p[i].life, NULL, &life, &d->p[i]);
-	usleep(150);
+	//usleep(142);
 }
 
 void	init_data(t_data *data)
 {
-	data->start = get_now();
 	data->p = malloc(sizeof(t_philo) * data->nb_philo);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
 	data->nb_meals = 0;
@@ -59,8 +56,8 @@ int	main(int ac, char **av)
 		if (data.nb_meals == data.nb_philo)
 		{
 			pthread_mutex_lock(&data.lock);
-			printf("\e[0;32m[PHILO] \033[0m%ims All philos ate enough\n",
-				get_now() - data.start);
+			printf("\e[0;32m[PHILO] \033[0m%lums All philos ate enough\n",
+				get_now());
 			clean_exit(&data);
 		}
 		if (data.nb_meals == -42)

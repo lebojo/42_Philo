@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lebojo <lebojo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 06:39:26 by jordan            #+#    #+#             */
-/*   Updated: 2023/06/07 14:27:23 by jordan           ###   ########.fr       */
+/*   Updated: 2023/09/19 18:49:20 by lebojo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	take_forks(t_philo	*p)
 {
 	p->state = Fork;
 	pthread_mutex_lock(p->fork);
-	p_state(get_now() - *p->gs, p);
+	p_state(get_now(), p);
 	pthread_mutex_lock(p->next_fork);
-	p_state(get_now() - *p->gs, p);
+	p_state(get_now(), p);
 	p->state = Eating;
 	p->last_eat = get_now();
-	p_state(get_now() - *p->gs, p);
+	p_state(get_now(), p);
 	usleep(p->t->eat * 1000);
 	p->nb_eat += 1;
 	pthread_mutex_unlock(p->fork);
@@ -31,7 +31,7 @@ void	take_forks(t_philo	*p)
 void	take_a_nap(t_philo *p)
 {
 	p->state = Sleeping;
-	p_state(get_now() - *p->gs, p);
+	p_state(get_now(), p);
 	usleep(p->t->sleep * 1000);
 }
 
@@ -42,7 +42,7 @@ void	*routine(void *philo)
 	p = (t_philo *)philo;
 	while (1)
 	{
-		p_state(get_now() - *p->gs, p);
+		p_state(get_now(), p);
 		if (p->state == Thinking)
 			take_forks(p);
 		if (p->state == Eating)
@@ -62,7 +62,7 @@ void	*life(void *philo)
 		if (get_now() - p->last_eat >= p->t->die)
 		{
 			p->state = Dead;
-			p_state(get_now() - *p->gs, p);
+			p_state(get_now(), p);
 			pthread_mutex_lock(p->l);
 			*p->nb_meals = -42;
 		}
