@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   console.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lebojo <lebojo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 05:08:51 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/07 06:06:28 by jordan           ###   ########.fr       */
+/*   Updated: 2023/09/21 02:04:15 by lebojo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ int	info(char *str)
 	return (1);
 }
 
-void	p_state(unsigned long int time, t_philo *p)
+void	p_state(t_philo *p)
 {
-	int		id;
-	char	*str;
+	int					id;
+	char				*str;
+	unsigned long int	time;
 
 	pthread_mutex_lock(p->l);
+	time = get_now();
 	id = p->id + 1;
 	str = "\e[0;32m[PHILO] \033[0m";
 	if (p->state == Thinking)
@@ -42,5 +44,6 @@ void	p_state(unsigned long int time, t_philo *p)
 		printf("%s%lums %i is sleeping\n", str, time, id);
 	if (p->state == Dead)
 		printf("%s%lums %i died\n", str, time, id);
-	pthread_mutex_unlock(p->l);
+	else
+		pthread_mutex_unlock(p->l);
 }

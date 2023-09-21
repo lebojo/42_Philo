@@ -6,7 +6,7 @@
 /*   By: lebojo <lebojo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:34:42 by jchapell          #+#    #+#             */
-/*   Updated: 2023/09/19 18:40:06 by lebojo           ###   ########.fr       */
+/*   Updated: 2023/09/21 02:05:14 by lebojo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ int	parse(t_data *d, int ac, char **av)
 		if (d->time.must_eat < 1)
 			return (error("Not enough meals"));
 	}
-	else
+	else if (ac == 5)
 		d->time.must_eat = -1;
+	else
+		return (1);
 	tmp = copy_av(av, ac);
 	if (zz_strcmp(tmp[0], av[1]) || zz_strcmp(tmp[1], av[2])
 		|| zz_strcmp(tmp[2], av[3]) || zz_strcmp(tmp[3], av[4]))
@@ -72,4 +74,13 @@ unsigned long int	get_now(void)
 		start = now.tv_sec * 1000 + now.tv_usec / 1000;
 	}
 	return ((now.tv_sec * 1000 + now.tv_usec / 1000) - start);
+}
+
+void	wait_time(int time)
+{
+	unsigned long int	start;
+
+	start = get_now();
+	while (get_now() - start < time)
+		usleep(100);
 }

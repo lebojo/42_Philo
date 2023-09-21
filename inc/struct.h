@@ -6,7 +6,7 @@
 /*   By: lebojo <lebojo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:29:32 by jchapell          #+#    #+#             */
-/*   Updated: 2023/09/19 18:43:07 by lebojo           ###   ########.fr       */
+/*   Updated: 2023/09/21 00:49:10 by lebojo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_philo
 {
 	int					id;
 	unsigned long int	last_eat;
+	unsigned long int	birth;
 	int					nb_philo;
 	int					nb_eat;
 	int					*nb_meals;

@@ -6,7 +6,7 @@
 /*   By: lebojo <lebojo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 06:39:26 by jordan            #+#    #+#             */
-/*   Updated: 2023/09/19 18:49:20 by lebojo           ###   ########.fr       */
+/*   Updated: 2023/09/21 02:04:15 by lebojo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ void	take_forks(t_philo	*p)
 {
 	p->state = Fork;
 	pthread_mutex_lock(p->fork);
-	p_state(get_now(), p);
+	p_state(p);
 	pthread_mutex_lock(p->next_fork);
-	p_state(get_now(), p);
+	p_state(p);
 	p->state = Eating;
+	pthread_mutex_lock(p->l);
 	p->last_eat = get_now();
-	p_state(get_now(), p);
-	usleep(p->t->eat * 1000);
+	pthread_mutex_unlock(p->l);
+	p_state(p);
+	wait_time(p->t->eat);
 	p->nb_eat += 1;
 	pthread_mutex_unlock(p->fork);
 	pthread_mutex_unlock(p->next_fork);
@@ -31,8 +33,9 @@ void	take_forks(t_philo	*p)
 void	take_a_nap(t_philo *p)
 {
 	p->state = Sleeping;
-	p_state(get_now(), p);
-	usleep(p->t->sleep * 1000);
+	p_state(p);
+	wait_time(p->t->sleep);
+	p->state = Thinking;
 }
 
 void	*routine(void *philo)
@@ -42,28 +45,25 @@ void	*routine(void *philo)
 	p = (t_philo *)philo;
 	while (1)
 	{
-		p_state(get_now(), p);
-		if (p->state == Thinking)
-			take_forks(p);
-		if (p->state == Eating)
-			take_a_nap(p);
-		if (p->state == Sleeping)
-			p->state = Thinking;
+		p_state(p);
+		take_forks(p);
+		take_a_nap(p);
 	}
 }
 
 void	*life(void *philo)
 {
-	t_philo	*p;
+	t_philo				*p;
+	unsigned long int	time;
 
 	p = (t_philo *)philo;
 	while (1)
 	{
-		if (get_now() - p->last_eat >= p->t->die)
+		time = get_now();
+		if (time - p->last_eat >= p->t->die)
 		{
 			p->state = Dead;
-			p_state(get_now(), p);
-			pthread_mutex_lock(p->l);
+			p_state(p);
 			*p->nb_meals = -42;
 		}
 		if (p->nb_eat == p->t->must_eat)

@@ -6,7 +6,7 @@
 /*   By: lebojo <lebojo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:30:10 by jchapell          #+#    #+#             */
-/*   Updated: 2023/09/19 18:47:17 by lebojo           ###   ########.fr       */
+/*   Updated: 2023/09/21 02:05:40 by lebojo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,32 @@ void	create_philo(t_data *d, int i)
 	d->p[i].fork = &d->forks[i];
 	d->p[i].next_fork = &d->forks[(i + 1) % d->nb_philo];
 	d->p[i].state = Thinking;
-	d->p[i].last_eat = 0;
 	d->p[i].l = &d->lock;
+	d->p[i].last_eat = get_now();
+	d->p[i].birth = d->p[i].last_eat;
 	d->p[i].nb_eat = 0;
 	d->p[i].nb_meals = &d->nb_meals;
 	pthread_create(&d->p[i].tr, NULL, &routine, &d->p[i]);
 	pthread_create(&d->p[i].life, NULL, &life, &d->p[i]);
-	//usleep(142);
+	if (i % 2)
+		usleep(1000000 / 200);
 }
 
 void	init_data(t_data *data)
 {
+	int	i;
+
 	data->p = malloc(sizeof(t_philo) * data->nb_philo);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philo);
 	data->nb_meals = 0;
 	pthread_mutex_init(&data->lock, NULL);
+	pthread_mutex_unlock(&data->lock);
+	i = -1;
+	while (++i < data->nb_philo)
+	{
+		pthread_mutex_init(&data->forks[i], NULL);
+		create_philo(data, i);
+	}
 }
 
 int	main(int ac, char **av)
@@ -45,12 +56,6 @@ int	main(int ac, char **av)
 	if (parse(&data, ac, av))
 		exit(error("Invalid arguments"));
 	init_data(&data);
-	i = -1;
-	while (++i < data.nb_philo)
-		pthread_mutex_init(&data.forks[i], NULL);
-	i = -1;
-	while (++i < data.nb_philo)
-		create_philo(&data, i);
 	while (1)
 	{
 		if (data.nb_meals == data.nb_philo)

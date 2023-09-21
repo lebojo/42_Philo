@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jordan <jordan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lebojo <lebojo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:29:07 by jchapell          #+#    #+#             */
-/*   Updated: 2023/06/07 14:05:45 by jordan           ###   ########.fr       */
+/*   Updated: 2023/09/21 02:04:43 by lebojo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@
 /*UTILS				*/
 int					parse(t_data *d, int ac, char **av);
 unsigned long int	get_now(void);
+void				wait_time(int time);
 
 /*CONSOLE			*/
-void				p_state(unsigned long int time, t_philo *p);
+void				p_state(t_philo *p);
 int					info(char *str);
 int					error(char *str);
 
