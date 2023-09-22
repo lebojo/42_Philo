@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lebojo <lebojo@student.42.fr>              +#+  +:+       +#+         #
+#    By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 01:10:08 by jordan            #+#    #+#              #
-#    Updated: 2023/09/19 16:53:26 by lebojo           ###   ########.fr        #
+#    Updated: 2023/09/22 17:16:09 by jchapell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Executable Name
 ENAME	=	philo
 NAME	=	philo.a
-CFLAGS	=	
+CFLAGS	=	-Werror -Wall -Wextra
 AR		=	ar -rsc
 FILES	=	inc/mini_libft/ft_strdup.c inc/mini_libft/ft_itoa.c \
 			main.c utils.c console.c thread.c

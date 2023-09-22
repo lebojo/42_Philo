@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   thread.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebojo <lebojo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 06:39:26 by jordan            #+#    #+#             */
-/*   Updated: 2023/09/21 02:04:15 by lebojo           ###   ########.fr       */
+/*   Updated: 2023/09/22 17:17:35 by jchapell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	*life(void *philo)
 	while (1)
 	{
 		time = get_now();
-		if (time - p->last_eat >= p->t->die)
+		if (time - p->last_eat >= (unsigned long int)p->t->die)
 		{
 			p->state = Dead;
 			p_state(p);

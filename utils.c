@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebojo <lebojo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:34:42 by jchapell          #+#    #+#             */
-/*   Updated: 2023/09/21 02:05:14 by lebojo           ###   ########.fr       */
+/*   Updated: 2023/09/22 17:16:45 by jchapell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ void	wait_time(int time)
 	unsigned long int	start;
 
 	start = get_now();
-	while (get_now() - start < time)
+	while (get_now() - start < (unsigned long int)time)
 		usleep(100);
 }

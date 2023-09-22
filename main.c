@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebojo <lebojo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:30:10 by jchapell          #+#    #+#             */
-/*   Updated: 2023/09/21 02:05:40 by lebojo           ###   ########.fr       */
+/*   Updated: 2023/09/22 17:16:23 by jchapell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	init_data(t_data *data)
 int	main(int ac, char **av)
 {
 	t_data	data;
-	int		i;
 
 	if (parse(&data, ac, av))
 		exit(error("Invalid arguments"));
