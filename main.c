@@ -6,7 +6,7 @@
 /*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:30:10 by jchapell          #+#    #+#             */
-/*   Updated: 2023/09/22 17:16:23 by jchapell         ###   ########.fr       */
+/*   Updated: 2023/09/22 17:20:20 by jchapell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int ac, char **av)
 {
 	t_data	data;
 
-	if (parse(&data, ac, av))
+	if (ac < 5 || ac > 6 || parse(&data, ac, av))
 		exit(error("Invalid arguments"));
 	init_data(&data);
 	while (1)
