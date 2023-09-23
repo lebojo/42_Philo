@@ -6,7 +6,7 @@
 #    By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/01 01:10:08 by jordan            #+#    #+#              #
-#    Updated: 2023/09/22 17:16:09 by jchapell         ###   ########.fr        #
+#    Updated: 2023/09/24 01:10:15 by jchapell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,5 @@ fclean: clean
 		@$(RM) -rfv $(ENAME)
 
 re: fclean all
-
-san: all
-	$(CC) $(CFLAGS) $(NAME) -fsanitize=thread -o $(ENAME)
 
 .PHONY : clean fclean re

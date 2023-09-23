@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lebojo <lebojo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:29:07 by jchapell          #+#    #+#             */
-/*   Updated: 2023/09/21 02:04:43 by lebojo           ###   ########.fr       */
+/*   Updated: 2023/09/24 00:35:06 by jchapell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int					error(char *str);
 
 /*THREAD			*/
 void				*routine(void *philo);
-void				*life(void *philo);
 void				clean_exit(t_data *d);
 
 /*MINI_LIBFT		*/

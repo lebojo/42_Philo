@@ -6,7 +6,7 @@
 /*   By: jchapell <jchapell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 03:30:10 by jchapell          #+#    #+#             */
-/*   Updated: 2023/09/22 17:20:20 by jchapell         ###   ########.fr       */
+/*   Updated: 2023/09/24 01:06:54 by jchapell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	create_philo(t_data *d, int i)
 	d->p[i].nb_eat = 0;
 	d->p[i].nb_meals = &d->nb_meals;
 	pthread_create(&d->p[i].tr, NULL, &routine, &d->p[i]);
-	pthread_create(&d->p[i].life, NULL, &life, &d->p[i]);
 	if (i % 2)
 		usleep(1000000 / 200);
 }
@@ -48,6 +47,33 @@ void	init_data(t_data *data)
 	}
 }
 
+void	checker(t_data *data)
+{
+	int	i;
+
+	i = -1;
+	data->nb_meals = 0;
+	while (++i < data->nb_philo)
+	{
+		if (get_now() - data->p[i].last_eat >= \
+			(unsigned long int)data->time.die)
+		{
+			data->p[i].state = Dead;
+			pthread_mutex_unlock(&data->lock);
+			p_state(&data->p[i]);
+			clean_exit(data);
+		}
+		if (data->p[i].nb_eat == data->time.must_eat)
+			data->nb_meals++;
+	}
+	if (data->nb_meals == data->nb_philo)
+	{
+		printf("\e[0;32m[PHILO] \033[0m%lums All philos ate enough\n",
+			get_now());
+		clean_exit(data);
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_data	data;
@@ -57,15 +83,9 @@ int	main(int ac, char **av)
 	init_data(&data);
 	while (1)
 	{
-		if (data.nb_meals == data.nb_philo)
-		{
-			pthread_mutex_lock(&data.lock);
-			printf("\e[0;32m[PHILO] \033[0m%lums All philos ate enough\n",
-				get_now());
-			clean_exit(&data);
-		}
-		if (data.nb_meals == -42)
-			clean_exit(&data);
+		pthread_mutex_lock(&data.lock);
+		checker(&data);
+		pthread_mutex_unlock(&data.lock);
 	}
 	return (0);
 }
